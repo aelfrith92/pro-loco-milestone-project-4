@@ -32,7 +32,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = development
 
 ALLOWED_HOSTS = [
-    'localhost'
+    'localhost',
+    'proloco-supersano.herokuapp.com'
 ]
 
 
