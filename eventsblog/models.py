@@ -29,7 +29,7 @@ class Event(models.Model):
         return self.title
 
     def number_of_joins(self):
-        return self.likes.count()
+        return self.joins.count()
 
 
 class Comment(models.Model):
