@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-import datetime
+from django.utils import timezone
+from datetime import datetime, timedelta
 
-STATUS = ((0, "Draft"), (1, "Published"), (2, "Cancelled"))
+STATUS = ((0, "Draft"), (1, "Scheduled"), (2, "Cancelled"))
 AUDIENCE = ((0, "Admin"), (1, "Everyone"))
 
 class Event(models.Model):
@@ -20,7 +21,8 @@ class Event(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     joins = models.ManyToManyField(
         User, related_name='blogevent_like', blank=True)
-    scheduled_on = models.DateTimeField(default=datetime.datetime.now())
+    scheduled_on = models.DateTimeField(default=timezone.now() +
+                                        timedelta(days=14))
 
     class Meta:
         ordering = ["scheduled_on"]
