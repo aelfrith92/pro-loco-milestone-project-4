@@ -96,7 +96,13 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                {% if commented %}
+                {% comment %} 
+                    The following condition checks whether user's comment 
+                    is still awaiting approval. It is defined via views.py 
+                    as soon as the user submit a comment successfully
+                {% endcomment %}
+                
+                {% if commented and user.is_staff != True %}
 	                <div class="alert alert-success" role="alert">
 	                    Your comment is awaiting approval
 	                </div>
@@ -104,11 +110,11 @@
                 {% if user.is_authenticated %}
 
 	                <h3>Leave a comment:</h3>
-	                <p>Posting as: {{ user.username }}</p>
+	                <p>Posting as: <span class="badge bg-primary">{{ user.username }}</span></p>
 	                <form method="post" style="margin-top: 1.3em;">
 	                    {{ comment_form | crispy }}
 	                    {% csrf_token %}
-	                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+	                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
 	                </form>
                 {% endif %}
                 {% endif %}
