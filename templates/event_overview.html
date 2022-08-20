@@ -37,12 +37,16 @@
                     <div class="col-1">
                         <!-- The number of joins goes before the closing strong tag -->
                         <strong>
+                            {% comment %} 
+                                The following condition will let the user submit their join
+                                preference, depending on the authentication status
+                            {% endcomment %}
                             {% if user.is_authenticated %}
-                                <form class="d-inline" action="#" method="POST">
+                                <form class="d-inline" action="{% url 'event_like' event.slug %}" method="POST">
                                     {% csrf_token %}
                                     {% if joined %}
                                         <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
-                                            <i class="fa-solid fa-user-plus"></i>
+                                            <i class="fa-solid fa-user-minus"></i>
                                         </button>
                                     {% else %}
                                         <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
@@ -53,6 +57,7 @@
                             {% else %}
                                 <span class="text-secondary"><i class="fa-solid fa-user-plus"></i></span>
                             {% endif %}
+                            <span class="text-secondary"> {{ event.number_of_joins }} </span>
                         </strong>
                     </div>
                     <div class="col-1">
@@ -63,6 +68,9 @@
                         </strong>
                         {% endwith %}
                     </div>
+                    {% if joined %}
+                        <p class="joined_message">You have joined the event</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
