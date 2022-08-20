@@ -45,7 +45,7 @@ class Event(models.Model):
 class Comment(models.Model):
     '''This class defines the comment model'''
     event = models.ForeignKey(Event, on_delete=models.CASCADE,
-                              related_name="events")
+                              related_name="comments")
     name = models.CharField(max_length=50)
     email = models.EmailField()
     body = models.TextField()
