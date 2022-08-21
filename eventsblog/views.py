@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from  django.views import generic, View
+from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Event
-from .forms import CommentEventForm
+from .forms import CommentEventForm, SuggestEventForm
 
 
 class EventList(generic.ListView):
@@ -55,7 +55,7 @@ class EventOverview(View):
             comment.save()
         else:
             comment_form = CommentEventForm()
-        
+
         return render(
             request,
             "event_overview.html",
