@@ -54,6 +54,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'suggestion' %}">Suggest an Event</a>
+                        </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
@@ -61,6 +64,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
+                        
                     {% endif %}
                     <!-- End of Jinja checks about authentication + related menu items-->
                 </ul>
@@ -92,13 +96,13 @@
             <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-        {% comment %} <script>
+        <script>
             setTimeout(function () {
                 let messages = document.getElementById('msg');
                 let alert = new bootstrap.Alert(messages);
                 alert.close();
             }, 3000);
-        </script> {% endcomment %}
+        </script>
 
     </body>
 </html>

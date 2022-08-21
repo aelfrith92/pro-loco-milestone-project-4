@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from .models import Event
 from .forms import CommentEventForm, SuggestEventForm
@@ -79,3 +80,10 @@ class EventJoin(View):
             event.joins.add(request.user)
 
         return HttpResponseRedirect(reverse('event_detail', args=[slug]))
+
+
+class Suggestion(CreateView):
+
+    model = Event
+    form_class = SuggestEventForm
+    template_name = "suggestion.html"
