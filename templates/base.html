@@ -69,7 +69,7 @@
             </nav>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2 mt-3">
+                    <div class="col-md-8 offset-md-2 mt-3" id="bannerContainer">
                         {% for message in messages %}
                         <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
                             {{ message | safe }}
@@ -97,7 +97,7 @@
             setTimeout(function () {
                 let messages = document.getElementById('msg');
                 let alert = new bootstrap.Alert(messages);
-                let msgContainer = document.querySelector('mt-3');
+                let msgContainer = document.getElementById('bannerContainer');
                 msgContainer.classList.remove("mt-3");
                 alert.close();
             }, 3000);
