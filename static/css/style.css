@@ -92,7 +92,7 @@ body {
   }
 }
 
-/* TEMPORARY CODE INSTITUTE STYLE
+/* CODE INSTITUTE STYLE
 -------------------------------------------------- */
 
 body {
@@ -240,6 +240,29 @@ body {
 
 /* END CODE INSTITUTE STYLE */
 
-.joined_message {
-  font-size: small;
+/* HEADER ADJUSTMENTS AND OVERRIDING STYLE OF DJANGO BANNERS
+-------------------------------------------------- */
+
+#msgContainer {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#msg {
+  margin-bottom: 0;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+header + .container-fluid {
+  margin-top: 0.438rem;
+}
+
+.alert-dismissible .btn-close {
+  position: inherit;
+  padding: 0;
+  z-index: 0;
+  top: 0.188rem;
+  right: inherit;
 }
