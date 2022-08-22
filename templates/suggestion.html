@@ -9,7 +9,7 @@
                 {% if user.is_authenticated %}
 	                <h3>Submit your suggestion:</h3>
 	                <p>Posting as: <span class="badge bg-primary">{{ request.user.username }}</span></p>
-	                <form method="post" action="{% url 'suggestion' %}" style="margin-top: 1.3em;">
+	                <form method="post" enctype="multipart/form-data" action="{% url 'suggestion' %}" style="margin-top: 1.3em;">
 	                    {{ form | crispy }}
 	                    {% csrf_token %}
 	                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
