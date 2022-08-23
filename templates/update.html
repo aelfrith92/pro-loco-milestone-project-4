@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                {% if user.is_authenticated %}
+	                <h3>Submit your suggestion:</h3>
+	                <p>Posting as: <span class="badge bg-primary">{{ request.user.username }}</span></p>
+	                <form method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
+	                    {{ form | crispy }}
+	                    {% csrf_token %}
+	                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+	                </form>
+                {% else %}
+                    <p class="jumbotron">You need to authenticate in order to suggest an event. Go
+                        to the <a href="{% url 'account_login' %}">Login page</a> to authenticate.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -59,7 +59,7 @@
 
   <div class="container marketing">
 
-    <!-- List of Events paginated by 4 -->
+    <!-- List of Events paginated by 6 -->
     {% for event in event_list %}
 
       <hr class="featurette-divider">
@@ -82,6 +82,10 @@
               Scheduled on: {{ event.scheduled_on }} 
               <p><i class="fa-solid fa-user-plus"></i>{{ event.number_of_joins }}</p>
             </p>
+            {% if user.is_authenticated and user.is_staff %}
+              <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
+              <a class="btn btn-outline-danger" href="#">Delete</a>
+            {% endif %}
           </div>
           <div class="col-md-5">
             <div class="image-container">
@@ -117,6 +121,10 @@
               Scheduled on: {{ event.scheduled_on }} 
               <p><i class="fa-solid fa-user-plus"></i>{{ event.number_of_joins }}</p>
             </p>
+            {% if user.is_authenticated and user.is_staff %}
+              <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
+              <a class="btn btn-outline-danger" href="#">Delete</a>
+            {% endif %}
           </div>
           <div class="col-md-5 order-md-1">
             <div class="image-container">
