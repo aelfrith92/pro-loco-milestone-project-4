@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
-from django.views.generic.edit import CreateView, FormMixin
+from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from .models import Event
 from django.contrib import messages
@@ -96,5 +96,18 @@ class Suggestion(CreateView):
         form.instance.email = self.request.user.email
         form.instance.author_id = self.request.user.id
         form.instance.slug = slugify(form.instance.title)
-        messages.success(self.request, 'Event successfully submitted for review')
+        suggested_date = form.instance.scheduled_on
+        # Checking whether the chosen date is already taken
+        scheduled_events = Event.objects.values_list('scheduled_on')
+        for day in scheduled_events.values('scheduled_on'):
+            if day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x"):
+                messages.warning(
+                    self.request, 'The chosen date is taken by'
+                    ' another event. See the homepage for the available dates.'
+                )
+                return HttpResponseRedirect(reverse('suggestion', ))
+        messages.success(
+            self.request, 'Event successfully submitted for '
+            'review'
+        )
         return super(Suggestion, self).form_valid(form)
