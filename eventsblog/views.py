@@ -3,7 +3,9 @@ from django.views import generic, View
 from django.views.generic.edit import CreateView, FormMixin
 from django.http import HttpResponseRedirect
 from .models import Event
-from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+from django.utils import timezone
+# datetime rimossa dalla seguente importazione
+from datetime import timedelta
 from django.contrib import messages
 from django.utils.text import slugify
 from .forms import CommentEventForm, SuggestEventForm
@@ -105,6 +107,12 @@ class Suggestion(CreateView, FormMixin):
                 messages.warning(
                     self.request, 'The chosen date is taken by'
                     ' another event. See the homepage for the available dates.'
+                )
+                return HttpResponseRedirect(reverse('suggestion', ))
+            elif suggested_date < (timezone.now() + timedelta(days=14)):
+                messages.warning(
+                    self.request, 'Please, allow at least 14 days'
+                    ' to the proposed date.'
                 )
                 return HttpResponseRedirect(reverse('suggestion', ))
         messages.success(
