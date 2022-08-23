@@ -102,6 +102,9 @@
                 let alert = new bootstrap.Alert(messages);
                 alert.close();
             }, 3000);
+            if(document.getElementById('id_scheduled_on')){
+                document.getElementById('id_scheduled_on').setAttribute('type','date');
+            }
         </script>
 
     </body>

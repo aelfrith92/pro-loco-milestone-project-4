@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'bootstrap_datepicker_plus',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',

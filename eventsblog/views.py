@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormMixin
 from django.http import HttpResponseRedirect
 from .models import Event
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from django.contrib import messages
 from django.utils.text import slugify
 from .forms import CommentEventForm, SuggestEventForm
@@ -84,7 +85,7 @@ class EventJoin(View):
         return HttpResponseRedirect(reverse('event_detail', args=[slug]))
 
 
-class Suggestion(CreateView):
+class Suggestion(CreateView, FormMixin):
 
     model = Event
     form_class = SuggestEventForm

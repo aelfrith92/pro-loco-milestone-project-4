@@ -1,5 +1,6 @@
 from .models import Comment, Event
 from django import forms
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 
 
 class CommentEventForm(forms.ModelForm):
@@ -26,5 +27,5 @@ class SuggestEventForm(forms.ModelForm):
             Fields
         '''
         model = Event
-        fields = ('title', 'featured_image', 'text_preview', 'content',
+        fields = ('title', 'featured_image', 'text_preview', 'content', 
                   'scheduled_on')
