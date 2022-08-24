@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views import generic, View
-from django.views.generic.edit import CreateView, UpdateView
+# from django.views import generic, 
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from .models import Event
@@ -11,7 +11,7 @@ from django.utils.text import slugify
 from .forms import CommentEventForm, SuggestEventForm
 
 
-class EventList(generic.ListView):
+class EventList(ListView):
     model = Event
     queryset = Event.objects.filter(status=1).order_by("scheduled_on")
     template_name = "index.html"
@@ -124,32 +124,43 @@ class Suggestion(LoginRequiredMixin, CreateView):
 
 
 class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-
+    """
+    A view to editing an event form for the event owner
+    """
     model = Event
     form_class = SuggestEventForm
     template_name = 'update.html'
     success_url = "/"
 
-    # def form_valid(self, form):
-    #     # Di seguito bisogna rivedere la seconda parte della condition
-    #     if form.instance.title != self.request.event.title:
-    #         form.instance.slug = slugify(form.instance.title)
-    #     suggested_date = form.instance.scheduled_on
-    #     # Checking whether the chosen date is already taken
-    #     scheduled_events = Event.objects.values_list('scheduled_on')
-    #     for day in scheduled_events.values('scheduled_on'):
-    #         if day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x"):
-    #             messages.warning(
-    #                 self.request, 'The chosen date is taken by'
-    #                 ' another event. Have a look at the homepage for the'
-    #                 ' available dates.'
-    #             )
-    #             return HttpResponseRedirect(reverse('update', ))
-    #     messages.success(
-    #         self.request, 'Event successfully edited'
-    #     )
-    #     return super(UpdateEvent, self).form_valid(form)
-    
+    def form_valid(self, form):
+        suggested_date = form.instance.scheduled_on
+        # Checking whether the chosen date is already taken
+        scheduled_events = Event.objects.values_list('scheduled_on')
+        for day in scheduled_events.values('scheduled_on'):
+            if day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x"):
+                messages.warning(
+                    self.request, 'The chosen date is taken by'
+                    ' another event. Have a look at the homepage for the'
+                    ' available dates.'
+                )
+                return HttpResponseRedirect(reverse('update', ))
+        messages.success(
+            self.request, 'Event successfully edited'
+        )
+        return super(UpdateEvent, self).form_valid(form)
+
     # Check if admin or throw 403
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.is_staff
+
+
+class DeleteEvent(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    A view to delete an event
+    """
+    model = Event
+    success_url = "/"
+    template_name = 'event_confirm_delete.html'
+
+    def test_func(self):
+        return self.request.user.is_staff

@@ -84,7 +84,7 @@
             </p>
             {% if user.is_authenticated and user.is_staff %}
               <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger" href="#">Delete</a>
+              <a class="btn btn-outline-danger" href="{% url 'delete' event.slug %}">Delete</a>
             {% endif %}
           </div>
           <div class="col-md-5">
@@ -123,7 +123,7 @@
             </p>
             {% if user.is_authenticated and user.is_staff %}
               <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger" href="#">Delete</a>
+              <a class="btn btn-outline-danger" href="{% url 'delete' event.slug %}">Delete</a>
             {% endif %}
           </div>
           <div class="col-md-5 order-md-1">
