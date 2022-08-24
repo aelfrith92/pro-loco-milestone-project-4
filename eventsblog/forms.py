@@ -27,5 +27,4 @@ class SuggestEventForm(forms.ModelForm):
             Fields
         '''
         model = Event
-        fields = ('title', 'featured_image', 'text_preview', 'content', 
-                  'scheduled_on')
+        fields = ('title', 'featured_image', 'text_preview', 'content', 'scheduled_on')

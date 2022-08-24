@@ -25,7 +25,9 @@ class Event(models.Model):
     joins = models.ManyToManyField(
         User, related_name='blogevent_like', blank=True)
     # The next field sets the date +14 days at the time of creation
-    # to give enugh time to admins to approve and organize the event
+    # to give enough time to admins to approve and organize the event
+    # if JS is disabled on front-end, the date+14 automatically pre-populates
+    # the field in the form
     scheduled_on = models.DateTimeField(default=timezone.now() +
                                         timedelta(days=14))
 
