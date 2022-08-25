@@ -8,6 +8,19 @@ body {
   color: #5a5a5a;
 }
 
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -34,7 +47,17 @@ body {
   height: 32rem;
 }
 
+.carousel-supersano {
+  filter: sepia(50%);
+  object-fit: contain;
+}
 
+.container .carousel-caption{
+  background-color: rgba(147, 148, 0, 0.2);
+  border-radius: 5%;
+}
+
+.carousel-caption h1, .carousel-caption h1
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
