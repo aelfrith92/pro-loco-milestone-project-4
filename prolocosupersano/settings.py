@@ -106,6 +106,22 @@ TEMPLATES = [
     },
 ]
 
+SUMMERNOTE_CONFIG = {
+
+    'summernote': {
+        'width': '100%',
+
+        'toolbar': [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+        ],
+    },
+}
+
 WSGI_APPLICATION = 'prolocosupersano.wsgi.application'
 
 
