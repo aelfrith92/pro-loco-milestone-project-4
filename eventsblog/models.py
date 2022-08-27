@@ -28,7 +28,7 @@ class Event(models.Model):
     # to give enough time to admins to approve and organize the event
     # if JS is disabled on front-end, the date+14 automatically pre-populates
     # the field in the form
-    scheduled_on = models.DateField(default=timezone.now() +
+    scheduled_on = models.DateTimeField(default=timezone.now() +
                                         timedelta(days=14))
 
     class Meta:
