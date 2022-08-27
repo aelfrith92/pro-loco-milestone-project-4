@@ -42,7 +42,7 @@
                                 preference, depending on the authentication status
                             {% endcomment %}
                             {% if user.is_authenticated %}
-                                <form class="d-inline" action="{% url 'event_like' event.slug %}" method="POST">
+                                <form class="d-inline" action="{% url 'event_join' event.slug %}" method="POST">
                                     {% csrf_token %}
                                     {% if joined %}
                                         <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">

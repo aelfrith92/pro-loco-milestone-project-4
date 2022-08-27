@@ -9,11 +9,13 @@ class EventAdmin(SummernoteModelAdmin):
     search_fields = ['title', 'content']
     list_filter = ('status', 'created_on', 'scheduled_on')
     prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('content',)
-    actions = ['cancel_event']
+    actions = ['cancel_event', 'schedule_event']
 
     def cancel_event(self, request, queryset):
         queryset.update(status=2)
+ 
+    def schedule_event(self, request, queryset):
+        queryset.update(status=1)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

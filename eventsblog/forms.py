@@ -1,7 +1,6 @@
 from .models import Comment, Event
 from django import forms
-from bootstrap_datepicker_plus.widgets import DateTimePickerInput
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.widgets import SummernoteWidget
 
 
 class CommentEventForm(forms.ModelForm):
@@ -28,12 +27,13 @@ class SuggestEventForm(forms.ModelForm):
             Fields
         '''
         model = Event
-        fields = ('title', 'featured_image', 'text_preview', 'content', 'scheduled_on')
-
-        widgets = {
-            'content': SummernoteWidget()
-        }
-
+        fields = ('title', 'featured_image', 'text_preview', 'content',
+                  'scheduled_on')
         labels = {
-            'scheduled_on': 'Scheduled on (accepted format: YYYY-MM-DD)',
+            'scheduled_on': 'Scheduled on: (allow 14+ days from now)',
         }
+
+    BIRTH_YEAR_CHOICES = ['2022', '2023']
+    scheduled_on = forms.DateField(widget=forms
+                                   .SelectDateWidget(years=BIRTH_YEAR_CHOICES))
+

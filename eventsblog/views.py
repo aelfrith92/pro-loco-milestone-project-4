@@ -135,14 +135,29 @@ class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         suggested_date = form.instance.scheduled_on
         # Checking whether the chosen date is already taken
         scheduled_events = Event.objects.values_list('scheduled_on')
+        list_of_slugs = Event.objects.values_list('slug')
+        passed_event_slug = form.instance.slug
         for day in scheduled_events.values('scheduled_on'):
-            if day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x"):
+            print(day)
+            for other_slug in list_of_slugs.values('slug'):
+                print(other_slug['slug'], passed_event_slug)
+                # The following check makes sure that the view accepts the same date for the passed event
+                if (day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug == other_slug['slug']):
+                    break
+                elif day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug != other_slug['slug']:
+                    print(passed_event_slug, other_slug['slug'])
+                    messages.warning(
+                        self.request, 'The chosen date is taken by'
+                        ' another event. Have a look at the homepage for the'
+                        ' available dates.'
+                    )
+                    return HttpResponseRedirect(reverse('update', args=[passed_event_slug]))
+            if suggested_date < (timezone.now() + timedelta(days=5)):
                 messages.warning(
-                    self.request, 'The chosen date is taken by'
-                    ' another event. Have a look at the homepage for the'
-                    ' available dates.'
+                    self.request, 'Please, allow at least 5 days'
+                    ' to the staff to review the edited date.'
                 )
-                return HttpResponseRedirect(reverse('update', ))
+                return HttpResponseRedirect(reverse('update', args=[passed_event_slug]))
         messages.success(
             self.request, 'Event successfully edited'
         )
