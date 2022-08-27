@@ -57,7 +57,10 @@
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav ms-auto mt-3">
                         <li class="nav-item">
-                            <p>Welcome back <span class="badge bg-primary">{{ user.username }}</span></p>
+                            <h4>Welcome back <span class="badge 
+                            {% if user.is_staff %}bg-primary
+                            {%else%}bg-success
+                            {% endif %}">{{ user.username }}</span></h4>
                         </li>
                     </ul>
                     {% endif %}
@@ -91,13 +94,6 @@
             <p>Pro-Loco Supersano 2022</p>
         </footer>
         {% block extra_js %}
-        {% comment %} <script>
-            setTimeout(function () {
-                let messages = document.getElementById('msg');
-                let alert = new bootstrap.Alert(messages);
-                alert.close();
-            }, 6000);
-        </script> {% endcomment %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         {% endblock %}
     </body>

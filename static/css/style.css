@@ -431,4 +431,6 @@ z-index: 2;
 /* FORM STYLING - CREATE AND UPDATE PAGES
 -------------------------------------------------- */
 
-
+/* form {
+  display: flex;
+} */

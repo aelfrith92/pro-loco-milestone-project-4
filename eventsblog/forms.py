@@ -29,9 +29,6 @@ class SuggestEventForm(forms.ModelForm):
         model = Event
         fields = ('title', 'featured_image', 'text_preview', 'content',
                   'scheduled_on')
-        labels = {
-            'scheduled_on': 'Scheduled on: (allow 14+ days from now)',
-        }
 
     BIRTH_YEAR_CHOICES = ['2022', '2023']
     scheduled_on = forms.DateField(widget=forms
