@@ -340,7 +340,7 @@ footer {
   width: 100%;
   height: 235px;
   border-top-left-radius: 12px;
-border-top-right-radius: 12px;
+  border-top-right-radius: 12px;
   
 }
 
@@ -368,7 +368,7 @@ top: 0;
 .cardd {
   margin-right: 25px;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-  background-color: rgba(255, 251, 45, 0.855);
+  background-color: rgb(241, 243, 217);
   width: 100%;
   position: relative;
   border-radius: 12px;
@@ -376,7 +376,7 @@ top: 0;
   box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.526);
 }
 .cardd:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.526);
+  /* box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.526); */
   transform: scale(1.10, 1.10);
 }
 
@@ -416,7 +416,7 @@ z-index: 2;
 
 .cardd:hover .card__img--hover {
   height: 100%;
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 .cardd:hover .card__info {
@@ -428,9 +428,56 @@ z-index: 2;
   opacity: 1;
 }
 
-/* FORM STYLING - CREATE AND UPDATE PAGES
+.cardd:hover {
+    background: linear-gradient(129deg, #a9b3dd, #28d97d, #c5d928, #c5d928);
+    background-size: 500% 500%;
+
+    -webkit-animation: colourTransition 13s ease infinite;
+    -moz-animation: colourTransition 13s ease infinite;
+    -o-animation: colourTransition 13s ease infinite;
+    animation: colourTransition 13s ease infinite;
+}
+
+/* CUSTOMIZE THE CARD BACKGROUND - TRANSITIONS
 -------------------------------------------------- */
 
-/* form {
+@-webkit-keyframes colourTransition {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@-moz-keyframes colourTransition {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@-o-keyframes colourTransition {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@keyframes colourTransition {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+/* CUSTOMIZE THE CARD BACKGROUND - END
+-------------------------------------------------- */
+
+/* FORM STYLING - CREATE AND UPDATE PAGES
+-------------------------------------------------- */
+#signup_form label {
   display: flex;
-} */
+  justify-content: left;
+}
+
+/* SOCIAL LINKS IN THE FOOTER
+-------------------------------------------------- */
+.social-networks li {
+	display: inline;
+	list-style-type: none;
+}
+
+.social-networks a {
+  color: #AD7D52;
+}

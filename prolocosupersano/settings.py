@@ -35,7 +35,6 @@ DEBUG = development
 ALLOWED_HOSTS = [
     'localhost',
     'proloco-supersano.herokuapp.com',
-    'techsini.com',
 ]
 
 

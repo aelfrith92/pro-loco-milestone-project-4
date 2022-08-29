@@ -1,108 +1,162 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Pro-Loco Supersano
 
-Welcome Alfredo Morieri,
+Pro-Loco Supersano is an NGO based in Supersano - Italy, that gathers resourceful members always striving to organize events for the local community. This web-based app lets them have a general overview on events organized so far. Users visiting the website can interact with the content, depending on their admin rights. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Mock Up](docs/readme_images/multi-dev-mockup.png)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## Table of Contents
+* [User Experience Design (UX)](#User-Experience-Design)
+    * [The Strategy Plane](#The-Strategy-Plane)
+        * [Site Goals](#Site-Goals)
+        * [Agile Planning](#Agile-Planning)
+          * [User Stories](#User-Stories)
+    * [The Scope Plane](#The-Scope-Plane)
+    * [The Structure Plane](#The-Structure-Plane)
+      * [Features](#Features)
+      * [Future Features](#Features-Left-to-Implement)
+    * [The Skeleton Plane](#The-Skeleton-Plane)
+        * [Wireframes](#Wireframes)
+        * [Database Design](#Database-Design)
+        * [Security](#Security)
+    * [The Surface Plane](#The-Surface-Plane)
+        * [Design](#Design)
+            * [Colour Scheme](#Colour-Scheme)
+            * [Typography](#Typography)
+            * [Imagery](#Imagery)
+* [Technologies](#Technologies)
+* [Testing](#Testing)
+* [Deployment](#Deployment)
+    * [Version Control](#Version-Control)
+    * [Heroku Deployment](#Heroku-Deployment)
+    * [Run Locally](#Run-Locally)
+    * [Fork Project](#Fork-Project)
+* [Credits](#Credits)
+  * [Content](#Content)
+  * [Acknowledgements](#Acknowledgements)
 
-## Gitpod Reminders
+# User-Experience-Design
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## The-Strategy-Plane
 
-`python3 -m http.server`
+### Site-Goals
 
-A blue button should appear to click: _Make Public_,
+The site is aimed to give the NGO an online area where to show, organize, cancel local events, that are accessible to people that - otherwise - would not be able to view their events on other platforms. Moreover, as part of their policy, Pro-Loco Supersano also fosters active participation within the local community, turning into a chance to come up with one's suggestions via a dedicated form.
 
-Another blue button should appear to click: _Open Browser_.
+Eventually, users with admin rights (the staff) can approve both messages left on event pages and proposed events.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Agile Planning
 
-A blue button should appear to click: _Make Public_,
+This project was developed using agile methodologies, by delivering small features (issues). Tasks have been prioritized differently - based on their importance.
 
-Another blue button should appear to click: _Open Browser_.
+All issues were assigned to a project, prioritized under the labels, Must have, Should have, Could have, good first issue. They were handled according to complexity. "Must have" stories were completed first, "should haves", "could haves", and "good first issue" seen as features that visiting users would have seen first on the home page - a blend of higher priority and user-oriented experience. It was done this way to ensure that all core requirements were completed first, while additional features enriching the user experience would have been added gradually.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+The Kanban board was created using github projects and can be located [here](https://github.com/users/aelfrith92/projects/2/views/1?layout=board). It can be viewed to see more information on the project cards. Some stories have a set of acceptance criteria in order to define the functionality that marks that story as complete. Some other stories do not have acceptance criteria, as they were considered self-explanatory.
 
-To log into the Heroku toolbelt CLI:
+![Board](docs/readme_images/UserStories.png)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### User Stories
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+The following user stories were completed over time. Basic setup stories - such as development-related ones - have been omitted, to prioritize those strictly pertaining the end-user experience. The categories of users described below are "Site User" - meant as a non-authenticated user OR an authenticated user without staff/admin rghts, "admin or privileged user" - meant as an authenticated user, that can be part of the staff. If someone is an admin, but not part of the staff, they may not have access to certain features and might need to access the Django admin overview.
 
-------
+**Customer's statement**
 
-## Release History
+As the president of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+**Authentication**
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+As a Site User I can register an account, so that I can leave comments and my intention to join events
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+**Pagination and first impression**
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+As a Site User I can view a list of events with a short preview, so that I can select one to read about
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+As a Site User I can view a paginated list of events, so that I can easily select an event to view
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+**Interactions**
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+As a Site user I can leave comments on single event pages, so that I can interact with other site users
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+As a site user I can receive a notification banner at the top when an action was performed/processed successfully, so that I can have certainty of submitted data
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+As a Site user I can suggest an event, so that I can feel involved in the local community
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+As a site authenticated user I can suggest events and get warnings when I am trying to submit an overlapping event, so that I get more chances to see my suggestion approved
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+**Admin/staff actions**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+As a site admin or privileged user (part of the staff) I can edit events, so that I can organize them better.
 
-------
+As a site admin or privileged user (part of the staff) I can delete events, so that get rid of unwanted records in the database.
 
-## FAQ about the uptime script
+As a Site Admin I can create, read, update posts, so that I can manage my blog content.
 
-**Why have you added this script?**
+**Documentation**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+Tasks:
 
-**How will this affect me?**
+* Complete readme documentation
+* Complete testing documentation write up
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## The-Scope-Plan
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+* Responsive Design - Site should be fully functional on all devices from 320px up
+* Hamburger menu for mobile devices
+* Ability to perform CRUD functionality on events - admins; Create/Suggest + Read for standard authenticated users
+* Restricted role based features
+* Home page with list of events
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+## The-Structure-Plan
 
-**So….?**
+### Features
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+``CUSTOMER'S STATEMENT - As the president (owner) of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives``
 
-**Can I opt out?**
+Within the statement, there are a series of taken-for-granted features that should cover essential home page components, such as the navigation menu at the top.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+Implementation:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+**Navigation Menu**
 
-**Anything more?**
+ The Navigation contains links for Home, allauth options, suggestions (event creation for all authenticated users).
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+The following navigation items are available on all pages:
+  * Home -> index.html - Visible to all
+  * Login -> login.html - Visible to logged out users
+  * Register -> signup.html - Visible to logged out users
+  * Logout -> logout.html - Visible to logged in users
+  * Suggest an event -> suggestion.html - Visible to logged in users
 
----
+The navigation menu is displayed on all pages and drops down into a hamburger menu on smaller devices. This will allow users to view the site from any device and not take up too much space on mobile devices. 
 
-Happy coding!
+![Navbar](docs/readme_images/navbar.png)
+
+There is a Welcome message on the right side of the navigation bar, which is moved to the bottom on mobile devices burger views:
+
+![Burger_Menu](docs/readme_images/burger_nav.png)
+
+``USER STORY - As a Site User I can view a list of events with a short preview, so that I can select one to read about``
+
+``USER STORY - As a Site User I can view a paginated list of events, so that I can easily select an event to view``
+
+Implementation:
+
+**Home Page**
+
+The home page contains a hero carousel, depicting members of the staff, a local farmer with the picturesque hill behind the dust, and some characters of the movie "La grande guerra del Salento", shot in Supersano. These will give the user an idea about the cultural content available on the website. Each image contains a different message that adds up to the user's initial assumption about the website content and objective.
+
+![Hero Image](docs/readme_images/hero-img.png)
+
+Under the carousel, users can see the list of events that are actually confirmed and scheduled. Pagination options limit them to 6 per page. Example without authentication below:
+
+![List_of_Events](docs/readme_images/list_public.png)
+
+This is the version of the same list when users are authenticated and marked as part of the staff:
+
+![List_of_Events_Staff](docs/readme_images/list_auth.png)
+

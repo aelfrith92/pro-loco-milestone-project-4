@@ -48,14 +48,12 @@
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
-
     <!-- List of Events paginated by 6 -->
     {% for event in event_list %}
-      <hr class="featurette-divider">
+    <div class="container marketing">
       {% if forloop.counter|divisibleby:2 %}
 
-        <div class="row featurette">
+        <div class="row featurette border-top border-primary py-5">
           <div class="col-md-7">
             
             <a href="{% url 'event_detail' event.slug %}" class="post-link">
@@ -72,8 +70,8 @@
               <p><i class="fa-solid fa-user-plus"></i>{{ event.number_of_joins }}</p>
             </p>
             {% if user.is_authenticated and user.is_staff %}
-              <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger" href="{% url 'delete' event.slug %}">Delete</a>
+              <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
+              <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
             {% endif %}
           </div>
           <div class="col-md-5">
@@ -85,7 +83,7 @@
                 <article class="cardd card--1">
                   <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
                   <a href="{% url 'event_detail' event.slug %}" class="card_link">
-                    <div class="card__img--hover" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                    <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
                   </a>
                   <div class="card__info">
                     <span class="card__category">{{ event.text_preview }}</span>
@@ -101,7 +99,7 @@
 
       {% else %}
 
-        <div class="row featurette">
+        <div class="row featurette border-top border-primary py-5">
           <div class="col-md-7 order-md-2">
             <a href="{% url 'event_detail' event.slug %}" class="post-link">
               <h2 class="featurette-heading">
@@ -119,8 +117,8 @@
               <p><i class="fa-solid fa-user-plus"></i>{{ event.number_of_joins }}</p>
             </p>
             {% if user.is_authenticated and user.is_staff %}
-              <a class="btn btn-outline-info" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger" href="{% url 'delete' event.slug %}">Delete</a>
+              <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
+              <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
             {% endif %}
           </div>
           <div class="col-md-5 order-md-1">
@@ -133,7 +131,7 @@
                 <article class="cardd card--1">
                   <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
                   <a href="{% url 'event_detail' event.slug %}" class="card_link">
-                    <div class="card__img--hover" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                    <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
                   </a>
                   <div class="card__info">
                     <span class="card__category">{{ event.text_preview }}</span>
@@ -149,8 +147,9 @@
       
       {% endif %}
       {% if loop.last %}
-        <hr class="featurette-divider">
+      <hr class="featurette-divider">
       {% endif %}
+    </div><!-- /.container -->
     {% endfor %}
     {% if is_paginated %}
       <nav aria-label="Page navigation">
@@ -170,7 +169,5 @@
     {% endif %}
 
     <!-- END OF EVENT LIST -->
-
-  </div><!-- /.container -->
 
 {% endblock %}
