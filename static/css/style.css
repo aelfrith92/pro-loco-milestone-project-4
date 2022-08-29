@@ -1,6 +1,6 @@
 /* Importing Fonts
 -------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Lato:wght@300&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Lato:wght@300&family=Roboto:wght@100,300&display=swap');
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
@@ -24,6 +24,10 @@ body {
     .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+}
+
+#msgRow {
+  margin: auto 0;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -61,7 +65,6 @@ body {
 }
 
 #head-txt-cont h1 {
-  font-family: 'Josefin Sans', sans-ser;
   font-size: 400%;
 }
 
@@ -230,9 +233,10 @@ body {
     color: #E84610;
 }
 
-.post-title {
+.post-title, .post-subtitle + p {
     margin-top: 20%;
     margin-left: 5%;
+    font-weight: 300;
 }
 
 .post-subtitle {
@@ -287,7 +291,6 @@ body {
 
 #msg {
   margin-bottom: 0;
-  border-radius: 0;
   display: flex;
   justify-content: space-evenly;
 }

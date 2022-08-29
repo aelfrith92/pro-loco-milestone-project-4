@@ -10,8 +10,8 @@ Pro-Loco Supersano is an NGO based in Supersano - Italy, that gathers resourcefu
         * [Site Goals](#Site-Goals)
         * [Agile Planning](#Agile-Planning)
           * [User Stories](#User-Stories)
-    * [The Scope Plane](#The-Scope-Plane)
-    * [The Structure Plane](#The-Structure-Plane)
+    * [The Scope Plane](#The-Scope-Plan)
+    * [The Structure Plane](#The-Structure-Plan)
       * [Features](#Features)
       * [Future Features](#Features-Left-to-Implement)
     * [The Skeleton Plane](#The-Skeleton-Plane)
@@ -60,33 +60,31 @@ The following user stories were completed over time. Basic setup stories - such 
 
 **Customer's statement**
 
-As the president of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives
+Done - As the president of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives
 
 **Authentication**
 
-As a Site User I can register an account, so that I can leave comments and my intention to join events
+Done - As a Site User I can register an account, so that I can leave comments and my intention to join events
 
 **Pagination and first impression**
 
-As a Site User I can view a list of events with a short preview, so that I can select one to read about
+Done - As a Site User I can view a list of events with a short preview, so that I can select one to read about
 
-As a Site User I can view a paginated list of events, so that I can easily select an event to view
+Done - As a Site User I can view a paginated list of events, so that I can easily select an event to view
 
 **Interactions**
 
-As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.
+Done - As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.
 
-As a Site user I can leave comments on single event pages, so that I can interact with other site users
+Done - As a Site user I can leave comments on single event pages, so that I can interact with other site users
 
-As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
+Done - As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
 
 As a site user I can receive a notification banner at the top when an action was performed/processed successfully, so that I can have certainty of submitted data
 
 As a Site user I can suggest an event, so that I can feel involved in the local community
 
 As a site authenticated user I can suggest events and get warnings when I am trying to submit an overlapping event, so that I get more chances to see my suggestion approved
-
-As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
 
 **Admin/staff actions**
 
@@ -160,3 +158,59 @@ This is the version of the same list when users are authenticated and marked as 
 
 ![List_of_Events_Staff](docs/readme_images/list_auth.png)
 
+Buttons "Update" and "Delete" can be viewed attached to each event by staff users only.
+
+**Footer**
+
+A footer has been added to the bottom of the site, this contains Youtube, Instagram, and Facebook links so that users can follow the restaurant on social media if they want to keep up to date with updates. These icons have aria-labels added to ensure users with assistive screen reading technology know what the purpose of the links are for. They also open in new tabs as they lead users away from the site.
+
+At the bottom, presence on social networks can be found:
+
+![Footer](docs/readme_images/social_footer.png)
+
+``USER STORY - As a Site User I can register an account, so that I can leave comments and my intention to join events``
+
+**Registration**
+
+If visiting users wish to add their participation to events, comment, or suggest new ideas for future events, it can be done by registering first. Once the link "Register" on the nav menu is clicked, the public user is redirected to the registration form:
+
+![Registration](docs/readme_images/reg_page.png)
+
+The user will need to enter a unique username to sign up successfully, as well as an acceptable password with minimum security requirements - i.e. it cannot be set to "temporary".
+
+``USER STORY - As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.``
+
+**View Event Details**
+
+Public users can click on events and view their dedicated page: The small poster picture employed in the home page is here extended to a larger image combined with the event details:
+
+![Event_details](docs/readme_images/Event_details_overview.png)
+
+Event information will include date, time, short description (text preview/summary), description, picture.
+
+`` USER STORY - As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event``
+
+**Join/Unjoin Event Button**
+
+Authenticated users can let the staff know that they are going to join the event, by clicking/tapping on the related icon wit the "+" (plus) sign:
+
+![Join_Event_Button](docs/readme_images/join_event_button.png)
+
+As soon as the button is clicked, it changes its form to the same icon, but with the sign "-" (minus) and a message confirming participation just beneath:
+
+![Unjoin_Event_Button](docs/readme_images/unjoin_event.png)
+
+To unjoin the event, the user will just need to re-click or re-tap.
+
+`` USER STORY - As a Site user I can leave comments on single event pages, so that I can interact with other site users``
+**Leaving Comments**
+
+Authenticated users can leave comments: Staff users get their comments approved as soon as they submit them, standard users need to wait for approvals instead:
+
+![Approval](docs/readme_images/approval_banner.png)
+
+While comments are styled as follows when these have been approved:
+
+![Approved_Comments](docs/readme_images/Comment_area.png)
+
+A badge confirms the username of the person who is leaving a comment, while the icon about comments indicate the quantity of those approved and listed beneath it.

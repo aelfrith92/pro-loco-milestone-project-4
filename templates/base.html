@@ -24,7 +24,7 @@
     
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">Pro Loco - Supersano</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,24 +54,24 @@
                 </ul>
                 
                     
-                    {% if user.is_authenticated %}
-                    <ul class="navbar-nav ms-auto mt-3">
-                        <li class="nav-item">
-                            <h4>Welcome back <span class="badge 
-                            {% if user.is_staff %}bg-primary
-                            {%else%}bg-success
-                            {% endif %}">{{ user.username }}</span></h4>
-                        </li>
-                    </ul>
-                    {% endif %}
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ms-auto mt-3">
+                    <li class="nav-item">
+                        <h4>Welcome back <span class="badge 
+                        {% if user.is_staff %}bg-primary
+                        {%else%}bg-success
+                        {% endif %}">{{ user.username }}</span></h4>
+                    </li>
+                </ul>
+                {% endif %}
                     
                 
                 </div>
             </div>
             </nav>
         </header>
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container">
+            <div class="row" id="msgRow">
                 <div class="col-md-12" id="msgContainer">
                     {% for message in messages %}
                     <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">

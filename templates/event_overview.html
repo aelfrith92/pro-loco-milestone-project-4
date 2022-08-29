@@ -10,8 +10,8 @@
                 <h1 class="post-title">
                     {{ event.title }}
                 </h1>
-                <!-- event author goes before the | the event's created date goes after -->
                 <p class="post-subtitle">{{ event.author }} | {{ event.created_on }}</p>
+                <p>{{ event.text_preview }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
@@ -118,7 +118,9 @@
                 {% if user.is_authenticated %}
 
 	                <h3>Leave a comment:</h3>
-	                <p>Posting as: <span class="badge bg-primary">{{ user.username }}</span></p>
+	                <p>Posting as: {% if user.is_authenticated %}<h4><span class="badge{% if user.is_staff %} bg-primary {%else%} bg-success{% endif %}">{{ user.username }}</span></h4>
+                {% endif %}
+                        </span></p>
 	                <form method="post" style="margin-top: 1.3em;">
 	                    {{ comment_form | crispy }}
 	                    {% csrf_token %}
