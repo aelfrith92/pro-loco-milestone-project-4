@@ -60,25 +60,25 @@ The following user stories were completed over time. Basic setup stories - such 
 
 **Customer's statement**
 
-Done - As the president of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives
+As the president of the association Pro-Loco Supersano, I would like a home page, where members and non-members can find information about our activities and initiatives
 
 **Authentication**
 
-Done - As a Site User I can register an account, so that I can leave comments and my intention to join events
+As a Site User I can register an account, so that I can leave comments and my intention to join events
 
 **Pagination and first impression**
 
-Done - As a Site User I can view a list of events with a short preview, so that I can select one to read about
+As a Site User I can view a list of events with a short preview, so that I can select one to read about
 
-Done - As a Site User I can view a paginated list of events, so that I can easily select an event to view
+As a Site User I can view a paginated list of events, so that I can easily select an event to view
 
 **Interactions**
 
-Done - As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.
+As a Site User I can click on an event in the home page, so that I can read about details: whereabouts, whenabouts, etc.
 
-Done - As a Site user I can leave comments on single event pages, so that I can interact with other site users
+As a Site user I can leave comments on single event pages, so that I can interact with other site users
 
-Done - As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
+As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event
 
 As a site user I can receive a notification banner at the top when an action was performed/processed successfully, so that I can have certainty of submitted data
 
@@ -188,7 +188,7 @@ Public users can click on events and view their dedicated page: The small poster
 
 Event information will include date, time, short description (text preview/summary), description, picture.
 
-`` USER STORY - As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event``
+``USER STORY - As a Site user I can join / remove participation to single events, so that I can let other users know that I am going to join an event``
 
 **Join/Unjoin Event Button**
 
@@ -196,13 +196,14 @@ Authenticated users can let the staff know that they are going to join the event
 
 ![Join_Event_Button](docs/readme_images/join_event_button.png)
 
-As soon as the button is clicked, it changes its form to the same icon, but with the sign "-" (minus) and a message confirming participation just beneath:
+As soon as the button is clicked, it changes its form to the same icon, but with the sign "✓" (check) and a message confirming participation just beneath:
 
-![Unjoin_Event_Button](docs/readme_images/unjoin_event.png)
+![Unjoin_Event_Button](docs/readme_images/unjoinevent.png)
 
 To unjoin the event, the user will just need to re-click or re-tap.
 
-`` USER STORY - As a Site user I can leave comments on single event pages, so that I can interact with other site users``
+``USER STORY - As a Site user I can leave comments on single event pages, so that I can interact with other site users``
+
 **Leaving Comments**
 
 Authenticated users can leave comments: Staff users get their comments approved as soon as they submit them, standard users need to wait for approvals instead:
@@ -214,3 +215,100 @@ While comments are styled as follows when these have been approved:
 ![Approved_Comments](docs/readme_images/Comment_area.png)
 
 A badge confirms the username of the person who is leaving a comment, while the icon about comments indicate the quantity of those approved and listed beneath it.
+
+``USER STORY - As a site user I can receive a notification banner at the top when an action was performed/processed successfully, so that I can have certainty of submitted data``
+
+**Notifications and Banners**
+
+Users will get notifications based on their actions on the website. Integrated features - for the time being - include authentication and event-creation-editing validation. Examples as follows:
+
+![Authentication](docs/readme_images/Auth_logout.png)
+
+![Event submission](docs/readme_images/Event_submission.png)
+
+``USER STORY - As a Site user I can suggest an event, so that I can feel involved in the local community``
+
+**Event creation and validation**
+
+All authenticated users can suggest events and submit them for review to the staff. There are a few requirements to submit a request successfully:
+
+* The chosen date should not overlap with other events 
+* The chosen date should allow 14 days to the staff from the time of submission, to let them assess feasibility and organize everything on time
+
+Once the authenticated user clicks/taps on the navigation menu item "Suggest an event", they are redirected to a new page, where to submit the suggestion:
+
+![Navbar](docs/readme_images/navbar.png)
+
+![Suggest form](docs/readme_images/suggest_event.png)
+
+
+``USER STORY - As a site authenticated user I can suggest events and get warnings when I am trying to submit an overlapping event, so that I get more chances to see my suggestion approved``
+
+Once the form is ready with all data (compulsory fields are marked with an asterisk), the user can click on the button "Submit" and wait for the outcome of their suggestion. The latter will be notified by the banners pasted above, however, users will also come across warnings instructing on minimum requirements to successfully submit an event. Trying to suggest an event the same day of one of those listed in the home page will return a warning banner.
+
+``USER STORY - As a site admin or privileged user (part of the staff) I can edit events, so that I can organize them better.``
+
+``USER STORY - As a site admin or privileged user (part of the staff) I can delete events, so that get rid of unwanted records in the database.``
+
+**Event manipulation**
+
+Staff users can edit or delete events:
+
+* Buttons "Edit" and "Delete" show up next to each event within the home page, if the user is authenticated and is part of the staff.
+* Editing the date of the event will require to allow at least 5 days to the staff, to let them assess the feasibility and further arrangements.
+* Deletion request will be successful only upon confirmation.
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+``USER STORY - As a Site Admin I can create, read, update posts, so that I can manage my blog content.``
+
+**Admin CRUD functionality**
+
+Currently, the CRUD functionality is granted to the admin/staff user via separate areas on the website:
+
+* "Suggest an Event" lets all authenticated users create events
+* The home page lets all users see the list of scheduled events
+* Edit buttons let the staff edit details of the events
+* Delete buttons let the staff delete events from the database, upon confirmation
+
+### Features Left To Implement
+
+In the future, some obvious adjustments both in technical and UX terms will be applied. For example:
+* Admins/Staff will have a dedicated dashboard where to perform all CRUD actions, without the need of moving from page to page;
+* Thinking about deleting data from the database, events can be cancelled, rather than deleted, hence, the feature will be added and prioritized, to also let users know which events have been cancelled;
+* Timestamps and time submission will be optimized to improve the UX and readibility. The current project focused on understanding and implementing essential CRUD notions, rather than researching Jinja adaptations of specific features;
+* The general appearance will be better developed;
+* Notification banners will disappear automatically after 6 seconds, as originally set, however, the function was removed when - after several attempts of refactoring - the .close()-related error message persisted within the browser console. In this sense, troubleshooting of this console error is postponed.
+* Users will have the chance to review their submissions, even though limited permissions will be granted, to ease the administration effort in case of short notices;
+* Information about location won't be added to the current Event model, even though initially taken into consideration: The NGO is based in Supersano, it arranges events located always in a limited area, points of interest are widely known among local people, hence, defining the location within the description will suffice.
+
+``USER STORY - As an admin user I can leave internal notes about events, so that I can come up with suggestions about future events``
+
+This user story is not currently implemented, as it was marked as "Could have". It would be nice having a sort of internal interactions within single event overviews, to let the staff discuss about to-dos etc. This will not affect the current models/tables of the database, that were designed with this feature in mind. The field "audience" will distinguish the target of the comments between "admin" and "everyone" (default).
+
+## The-Skeleton-Plane
+
+### Wireframes
+
+The website was designed with responsiveness in mind, however, wireframing was meant to get a general idea of the first impression, hence, mobile wireframing is not available. There are tiny errors within the menu items depicted, as authenticated sessions change the content of the navbar.
+
+* Home Page
+
+![Home Page](docs/readme_images/Wireframing/Home_page.png)
+
+* Event Overview
+
+![Event Overview](docs/readme_images/Wireframing/Event_Overview.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
+![Edit and Delete](docs/readme_images/Edit_Delete.png)
+
