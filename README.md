@@ -300,15 +300,38 @@ The website was designed with responsiveness in mind, however, wireframing was m
 
 ![Event Overview](docs/readme_images/Wireframing/Event_Overview.png)
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+* Event Update
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+![Event Update](docs/readme_images/Wireframing/Event_Update.png)
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+* Event Deletion
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+![Event Deletion](docs/readme_images/Wireframing/Event_deletion.png)
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+* Event Suggestion
 
-![Edit and Delete](docs/readme_images/Edit_Delete.png)
+![Event Suggestion](docs/readme_images/Wireframing/Event_suggestion.png)
 
+* Account Registration
+
+![Account Registration](docs/readme_images/Wireframing/Account_Registration.png)
+
+* Account Logout
+
+![Account Logout](docs/readme_images/Wireframing/Account_Logout.png)
+
+There are obvious tiny changes in the final product. Errors 403, 404, 500 pages were designed following the same layout of the Event Deletion wireframe.
+
+### Database-Design
+
+The database was designed to allow CRUD functionality to be available to registered users, when signed in. The user model plays a crucial role in handling authentication, provided by Django. Enhanced user permissions were designed based on the user.is_staff boolean field, as it is intended to distinguish the admin role as user.is_superuser from staff members as user.is_staff. This way, future changes may for example grant special permissions to admins that intend to delete records from the database (superuser), instead of just cancelling an event (staff). Further information about this model can be found on [Django](https://docs.djangoproject.com/en/4.1/ref/contrib/auth/).
+
+The Event model includes information about the User who created/suggested the event, linked via a one-to-many relationship to the User model - as a foreign key then - mentioned above, under the field "author". Moreover, if one author is being deleted from the database, events created by that author will be deleted as well. 
+
+The "joins" field returns information about the users that clicked/tapped on the join button, to confirm they will join a given events. In this sense, "join" is a many-to-many field, because an event can have multiple "joins" left by multiple users.
+
+The Comment model presents a foreign key like the one above, in relation to the event it has been attached to. If an event is being deleted from the database, the attached comments will be deleted too. Finally, the field "audience" will determine the audience that the comment is meant for, however, as specified above, this feature will be implemented in the future.
+
+Entity relationship diagram was created using [LucidChart](https://lucid.app/) and shows the schemas for each of the models and how they are related.
+
+![Models](docs/readme_images/Models.png)
