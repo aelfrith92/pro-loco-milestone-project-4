@@ -1,6 +1,6 @@
 /* Importing Fonts
 -------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Lato:wght@300&family=Roboto:wght@100,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Lato:wght@300,400&family=Roboto:wght@100,300&display=swap');
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
@@ -83,15 +83,12 @@ body {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.marketing h2 {
-  font-weight: 400;
-}
-/* rtl:begin:ignore */
+
 .marketing .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
 }
-/* rtl:end:ignore */
+
 
 
 /* Featurettes by BS5 template
@@ -105,8 +102,8 @@ body {
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
-  /* rtl:remove */
   letter-spacing: -.05rem;
+  text-decoration: none;
 }
 
 
@@ -133,26 +130,7 @@ body {
 }
 
 /* CODE INSTITUTE STYLE
--------------------------------------------------- */
-
-body {
-    background-color: #F9FAFC;
-}
-
-.brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
-}
-
-.red-o {
-    color: #E84610;
-}
-
-.thin {
-    font-weight: 300;
-}
+--------------------------------------------------*/
 
 .light-bg {
     background-color: #fff;
@@ -304,11 +282,11 @@ body {
 }
 
 /* CODE INSTITUTE: CUSTOM OVERRIDING
--------------------------------------------------- */
+-------------------------------------------------- 
 
 .card-img-top {
   border-radius: 2%;
-}
+}*/
 
 footer {
    position: static;
@@ -392,29 +370,32 @@ z-index: 2;
 }
 
 .card__category {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   font-size: 13px;
   letter-spacing: 2px;
-  font-weight: 500;
+  font-weight: 400;
   color: #868686;
 }
 
 .card__title {
   margin-top: 5px;
   margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .card__by {
   font-size: 12px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 .card__author {
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   color: #AD7D52;
+  text-transform: uppercase;
 }
 
 .cardd:hover .card__img--hover {

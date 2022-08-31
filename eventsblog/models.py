@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils import timezone
-# datetime rimossa dalla seguente importazione
 from datetime import timedelta
 
 STATUS = ((0, "Draft"), (1, "Scheduled"), (2, "Cancelled"))

@@ -1,6 +1,5 @@
 from .models import Comment, Event
 from django import forms
-from django_summernote.widgets import SummernoteWidget
 
 
 class CommentEventForm(forms.ModelForm):

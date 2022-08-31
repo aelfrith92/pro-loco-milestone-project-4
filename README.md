@@ -335,3 +335,97 @@ The Comment model presents a foreign key like the one above, in relation to the 
 Entity relationship diagram was created using [LucidChart](https://lucid.app/) and shows the schemas for each of the models and how they are related.
 
 ![Models](docs/readme_images/Models.png)
+
+### Security
+
+Views were secured by using the django class-based view mixin, UserPassesTextMixin. A test function was created to use the mixin and checks were ran to ensure that the user who is trying to access the page is authorized. Any staff restricted functionality, user edit/delete functionality listed in the features was secured using this method.
+
+Environment variables were stored in an env.py for local development for security purposes to ensure no secret keys, api keys or sensitive information was added the the repository. In production, these variables were added to the heroku config vars within the project.
+
+## The-Surface-Plane
+### Design
+
+### Colour-Scheme
+
+The website is based on the BS5 template available [here](https://getbootstrap.com/docs/5.0/examples/carousel/). The present project has not focused on graphical effects or consistent colour palettes for a number of reasons, rather, essential style features have been quickly implemented thanks to Bootstrap 5. However, it is possible to observe a basic colour transition effect via css, when hovering on Event cards in the homepage.
+
+EXTERNAL CODE: Some classes were added directly from a previous walkthrough project, considered a nice fit. Moreover, the hovering effect and colour transition were retrieved from the following sources, later customized according to the project needs:
+
+[Gradient Animator](https://www.gradient-animator.com/)
+
+[Card Hovering Effect](https://freefrontend.com/css-card-hover-effects/)
+
+### Typography
+
+The Roboto, Lato fonts were used throughout the website. Source [Google Fonts](https://fonts.google.com/)
+
+### Imagery
+
+Images uploaded on Cloudinary and visible on the website were retrieved from [Pro Loco Supersano - Facebook](https://www.facebook.com/prolocosupersano2018). 
+
+
+## Technolgies
+
+- HTML
+  - The structure of the Website was developed using HTML as the main language.
+- CSS
+  - The Website was styled using custom CSS in an external file.
+- JavaScript
+  - JavaScript was used, even though via cdn only.
+- Python
+  - Python was the main programming language used for the application using the Django Framework.
+- Gitpod
+  - The website was developed using Gitpod IDE
+- GitHub
+  - Source code is hosted on [GitHub](https://github.com/aelfrith92/pro-loco-milestone-project-4)
+- Git
+  - Used to commit and push code during the development of the Website
+- Font Awesome
+  - This was used for various icons throughout the site
+- Favicon.io
+  - favicon files were created at https://favicon.io/favicon-converter/
+- balsamiq
+  - wireframes were created using balsamiq from https://balsamiq.com/
+
+**Python Modules Used**
+
+* Django Class based views (ListView, UpdateView, DeleteView, CreateView) - Used for the classes to create, read, update and delete
+* Mixins (LoginRequiredMixin, UserPassesTestMixin) - Used to enforce login required on views and test user is authorized to perform actions
+* messages - Used to pass messages to the toasts to display feedback to the user upon actions
+* timedelta - timedelta was used to add x days to the timestamp of submission and perform due checks
+
+**External Python Modules**
+
+* python3-openid==3.2.0 - Installed as dependency with another package
+* requests==2.27.1 - Installed as dependency with another package
+* requests-oauthlib==1.3.1 - Installed as dependency with another package (allauth authentication)
+* six==1.16.0 - Installed as dependency with another package
+* sqlparse==0.4.2 - Installed as dependency with another package
+* tzdata==2022.1 - Installed as dependency with another package
+* urllib3==1.26.9 - Installed as dependency with another package
+* whitenoise==6.2.0 - Used to serve static files directly without use of static resource provider like cloundinary
+
+* asgiref==3.5.2 - Installed as dependency with another package
+* cloudinary==1.29.0 - Cloundinary was set up for use
+* crispy-bootstrap5==0.6 - This was used to allow bootstrap5 use with crispy forms
+* dj-database-url==1.0.0 - Used to parse database url for production environment
+* dj3-cloudinary-storage==0.0.6 - Storage system to work with cloudinary
+* Django==3.2.15  - Framework used to build the application (LTS)
+* django-allauth==0.51.0 - Used for the sites authentication system, sign up, sign in, logout, password resets ect.
+* django-bootstrap-datepicker-plus==4.0.0 - Initially installed to style the datepicker, later replaced by built-in Django widgets
+* django-crispy-forms==1.14.0 - Used to style the forms on render
+* django-summernote==0.8.20.0 - Initially installed for text customization, however, later replaced to avoid html parsing
+* gunicorn==20.1.0 - Installed as dependency with another package
+* heroku==0.1.4 - Heroku CLI to troubleshoot deployment issues
+* html2text==2020.1.16 - Initially installed to handle the summernote text (prepopulated fields), later avoided
+* oauthlib==3.2.0 - Installed as dependency with another package
+* psycopg2==2.9.3 - Needed for heroku deployment
+* PyJWT==2.4.0 - Installed as dependency with another package
+* python-dateutil==1.5 - Initially installed to handle timestamps, later avoided
+* python3-openid==3.2.0 - Installed as dependency with another package
+* pytz==2022.1 - Installed as dependency with another package
+* requests-oauthlib==1.3.1 - Installed as dependency with another package (allauth authentication)
+* sqlparse==0.4.2 - Installed as dependency with another package
+
+## Testing
+
