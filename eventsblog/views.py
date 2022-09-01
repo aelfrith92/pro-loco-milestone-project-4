@@ -143,7 +143,7 @@ class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 print(other_slug['slug'], passed_event_slug)
                 # The following check makes sure that the view accepts a
                 # valid year, namely, either the current or the following one
-                if int(day['scheduled_on'].strftime("%Y")) > (int((timezone.now()).strftime("%Y"))+1):
+                if int(suggested_date.strftime("%Y")) > (int((timezone.now()).strftime("%Y"))+1):
                     print(int(day['scheduled_on'].strftime("%Y")), (int((timezone.now()).strftime("%Y"))+1))
                     # The following error class was inserted for demo purposes
                     return HttpResponseServerError(
