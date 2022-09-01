@@ -144,7 +144,12 @@ class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 # The following check makes sure that the view accepts the same date for the passed event
                 if int(day['scheduled_on'].strftime("%Y")) > 2023:
                     # The following error class was inserted for demo purposes
-                    return HttpResponseServerError()
+                    return HttpResponseServerError(
+                        render(
+                            request,
+                            "500.html",
+                        )
+                    )
                 elif (day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug == other_slug['slug']):
                     break
                 elif day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug != other_slug['slug']:
