@@ -593,6 +593,8 @@ Actual:
 
 403 error returned
 
+![403 Error](docs/readme_images/403.png)
+
 <hr>
 
 **Page not found - 404**
@@ -615,6 +617,8 @@ Actual:
 
 404 error returned
 
+![404 Error](docs/readme_images/404.png)
+
 <hr>
 
 **Internal server error 500**
@@ -625,15 +629,16 @@ Ensure better UX for users getting server errors.
 
 Steps:
 
-1. Navigate to [page](https://proloco-supersano.herokuapp.com/) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
-2. Click or tap "Update" next to any event.
-3. Inspect the code
-4. Add an option to the "select" tag presenting the id "id_scheduled_on_year", value attribute set to "2024", innerText set to "2024". Then, select "2024" as year of the event.
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/update/qualcosa) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
+2. Inspect the code
+3. Add an option to the "select" tag presenting the id "id_scheduled_on_year", value attribute set to "2024", innerText set to "2024". Then, select "2024" as year of the event.
 
 ![year not allowed](docs/readme_images/year-not-allowed.png)
 
-5. Fill the rest as you like
-6. Click or tap on "Submit"
+4. Fill the rest as you like
+5. Click or tap on "Submit"
+
+What is happening: This test was facilitated via the EventUpdate view, but - generally speaking - this sort of checks - integrated as conditional statements - will be changed to error-handling code format. For the time being, something deceitful is just being handled.
 
 Expected:
 
@@ -643,7 +648,7 @@ Actual:
 
 500 error returned for demo purposes
 
-This test was facilitated via the EventUpdate view, but - generally speaking - this sort of checks integrated as conditional statements will be changed to error-handling code format.
+![500 Error](docs/readme_images/500.png)
 
 ## Negative Testing
 

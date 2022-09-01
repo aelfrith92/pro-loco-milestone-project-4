@@ -1,5 +1,6 @@
 from .models import Comment, Event
 from django import forms
+from django.utils import timezone
 
 
 class CommentEventForm(forms.ModelForm):
@@ -29,7 +30,9 @@ class SuggestEventForm(forms.ModelForm):
         fields = ('title', 'featured_image', 'text_preview', 'content',
                   'scheduled_on')
 
-    BIRTH_YEAR_CHOICES = ['2022', '2023']
+    # The form should allow to enter dates that are not too far. Validation
+    # example available in the UpdateEvent view
+    current_year = int((timezone.now()).strftime("%Y"))
+    BIRTH_YEAR_CHOICES = [current_year, current_year+1]
     scheduled_on = forms.DateField(widget=forms
                                    .SelectDateWidget(years=BIRTH_YEAR_CHOICES))
-
