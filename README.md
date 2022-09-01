@@ -629,7 +629,7 @@ Ensure better UX for users getting server errors.
 
 Steps:
 
-1. Navigate to [page](https://proloco-supersano.herokuapp.com/update/qualcosa) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/update/test-the-date) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
 2. Inspect the code
 3. Add an option to the "select" tag presenting the id "id_scheduled_on_year", value attribute set to "2024", innerText set to "2024". Then, select "2024" as year of the event.
 
