@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseServerError
 from .models import Event
 from django.utils import timezone
 from datetime import timedelta
@@ -142,7 +142,10 @@ class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             for other_slug in list_of_slugs.values('slug'):
                 print(other_slug['slug'], passed_event_slug)
                 # The following check makes sure that the view accepts the same date for the passed event
-                if (day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug == other_slug['slug']):
+                if int(day['scheduled_on'].strftime("%Y")) > 2023:
+                    # The following error class was inserted for demo purposes
+                    return HttpResponseServerError()
+                elif (day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug == other_slug['slug']):
                     break
                 elif day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug != other_slug['slug']:
                     print(passed_event_slug, other_slug['slug'])

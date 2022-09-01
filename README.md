@@ -281,6 +281,7 @@ In the future, some obvious adjustments both in technical and UX terms will be a
 * Notification banners will disappear automatically after 6 seconds, as originally set, however, the function was removed when - after several attempts of refactoring - the .close()-related error message persisted within the browser console. In this sense, troubleshooting of this console error is postponed.
 * Users will have the chance to review their submissions, even though limited permissions will be granted, to ease the administration effort in case of short notices;
 * Information about location won't be added to the current Event model, even though initially taken into consideration: The NGO is based in Supersano, it arranges events located always in a limited area, points of interest are widely known among local people, hence, defining the location within the description will suffice.
+* Event updates need to be refactored via UpdateEvent view, as these should allow at least 5 days from originally_scheduled_on. Currently, the admin can create an event allowing at least 14 days, then, they can edit it immediately and set the new scheduled_on value to moment_of_submission + 5 days, instead of 14 at least. This workaround is allowed to staff users only, hence, it is not drastically affecting UX, given the responsibility that staff has got on managing events.
 
 ``USER STORY - As an admin user I can leave internal notes about events, so that I can come up with suggestions about future events``
 
@@ -429,3 +430,226 @@ Images uploaded on Cloudinary and visible on the website were retrieved from [Pr
 
 ## Testing
 
+## Functional Testing
+
+**Authentication**
+
+Description:
+
+Ensure a user can sign up to the website
+
+Steps:
+
+1. Navigate to [Pro-Loco Supersano](https://proloco-supersano.herokuapp.com/) and click Register
+2. Enter email, username and password 
+3. Click Sign up
+
+Expected:
+
+The user gets errors in case of invalid passwords (i.e. temporary) or existing username, depending on Django's security measures. (Django-allauth-handled)
+
+The user gets logged in as soon as they enter valid information. (Django-allauth-handled)
+
+A green banner confirming authentication also shows up. (Django-messages-handled)
+
+Actual: 
+
+The user gets errors in case of invalid passwords (i.e. temporary) or existing username, depending on Django's security measures. (Django-allauth-handled)
+
+The user gets logged in as soon as they enter valid information. (Django-allauth-handled)
+
+A green banner confirming authentication also shows up. (Django-messages-handled)
+
+<hr>
+
+Description:
+
+Ensure a user can log in once signed up
+
+Steps:
+1. Navigate to [Pro-Loco Supersano](https://proloco-supersano.herokuapp.com/) and click Login
+2. Enter login details created in previous test case
+3. Click login
+
+Expected:
+
+User is successfully logged in and redirected to the home page (Django-allauth-handled)
+
+Actual:
+
+User is successfully logged in and redirected to the home page (Django-allauth-handled)
+
+<hr>
+
+Description:
+
+Ensure a user can sign out
+
+Steps:
+
+1. Login to the website
+2. Click the logout button
+3. Click confirm on the confirm logout page
+
+Expected:
+
+User is logged out (Django-allauth-handled)
+
+Actual:
+
+User is logged out (Django-allauth-handled)
+
+**Event CRUD functionalities**
+
+Description:
+
+Ensure a new event can be created (staff and non-staff) 
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/suggestE/) - Log in if prompted.
+2. Enter the following:
+    - Title: Un libro in masseria (Reading in a farmhouse)
+    - Download the poster from this [link](https://res.cloudinary.com/aelfrith/image/upload/v1662057247/Un_Libro_in_Masseria_2021_cndn3b.jpg) and choose it locally as "Image"
+    - Text Preview: Several authors will present their last books to the audience 
+    - Content: Join us at Le Stanzie, a picturesque venue that welcomes hundreds of people every year. The authors will go through their presentations and discuss about several topics with the audience. Enjoy the sorrounding calm and genuine silence of a Sourthern Italian countryside. Aperitivo willl be served afterwards.
+3. Scheduled on: any date starting at least 14 days after the moment of submission, i.e. if you are submitting on 01/09/2022, allow 14 days for a successful submission, namely, 15/09/2022 onwards.
+4. Click or tap on "Submit"
+
+Expected:
+
+Form successfully submits and a message is shown to alert the user of successful submission.
+
+Actual:
+
+Form successfully submits and a message is shown to alert the user of successful submission.
+
+<hr> 
+
+Description:
+
+Ensure an event can be edited.
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
+2. Click or tap "Update" next to any event.
+3. Enter the following:
+    - Title: [Edit the title as you like]
+    - Change the image with any of your choice
+    - Text Preview: [Edit the text preview as you like] 
+    - Content: [Edit the content as you like]
+4. Scheduled on: any date starting at least 5 days after the moment of submission, i.e. if you are submitting on 01/09/2022, allow 5 days for a successful submission, namely, 06/09/2022 onwards. The validation takes also seconds into accounts, for this reason, it is advisable to submit a +6 date- This feature will be improved in future.
+5. Click or tap on "Submit"
+
+Expected:
+
+Form successfully submits and a message is shown to alert the user of successful update.
+
+Actual:
+
+Form successfully submits and a message is shown to alert the user of successful update.
+
+<hr>
+
+Description:
+
+Ensure user can successfully delete an event. 
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
+2. Click or tap "Delete" next to any event.
+3. Confirm
+
+Expected:
+
+Booking is successfully deleted
+
+Actual:
+
+Booking is successfully deleted
+
+<hr>
+
+**Unauthorized actions - 403**
+
+Description:
+
+Prevent unauthorized users from performing staff-level actions.
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/) - Log in (Use the credentials created above via registration)
+2. Enter the following url into the browser address bar: https://proloco-supersano.herokuapp.com/update/la-grande-guerra-del-salento
+
+What is happening: You are trying to update an event without staff-level permissions
+
+Expected:
+
+403 error returned
+
+Actual:
+
+403 error returned
+
+<hr>
+
+**Page not found - 404**
+
+Description:
+
+Ensure better UX for users visiting pages that do not exist.
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/this-page-does-not-exist)
+
+What is happening: You are trying to visit a page that does not exist
+
+Expected:
+
+404 error returned
+
+Actual:
+
+404 error returned
+
+<hr>
+
+**Internal server error 500**
+
+Description:
+
+Ensure better UX for users getting server errors.
+
+Steps:
+
+1. Navigate to [page](https://proloco-supersano.herokuapp.com/) - Log in (staff level credentials provided at the time of milestone-project-4 submission)
+2. Click or tap "Update" next to any event.
+3. Inspect the code
+4. Add an option to the "select" tag presenting the id "id_scheduled_on_year", value attribute set to "2024", innerText set to "2024". Then, select "2024" as year of the event.
+
+![year not allowed](docs/readme_images/year-not-allowed.png)
+
+5. Fill the rest as you like
+6. Click or tap on "Submit"
+
+Expected:
+
+500 error returned for demo purposes
+
+Actual: 
+
+500 error returned for demo purposes
+
+This test was facilitated via the EventUpdate view, but - generally speaking - this sort of checks integrated as conditional statements will be changed to error-handling code format.
+
+## Negative Testing
+
+Tests were performed on the create booking to ensure that:
+
+1. A user cannot create a date in the past
+2. A user cannot create an event on the same dates that others are scheduled on
+3. A user cannot update events too far in the future (2024 onwards)
+4. Forms cannot be submitted when required fields are empty + other Django-based checks

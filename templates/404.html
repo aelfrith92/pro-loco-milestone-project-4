@@ -1,9 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-    <div class="d-flex justify-content-center">
-        <h1>404 Page not found</h1>
-        <p>Click here to return home</p>
+    <div class="d-block">
+        <div class="text-center">
+            <h1>404 Page not found</h1>
+        </div>
+        <div>
+            <p>Click here to return <a href="{% url 'home' %}">home</a></p>
+        </div>
     </div>
 </div>
 
