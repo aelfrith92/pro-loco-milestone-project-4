@@ -658,3 +658,7 @@ Tests were performed on the create booking to ensure that:
 2. A user cannot create an event on the same dates that others are scheduled on
 3. A user cannot update events too far in the future (2024 onwards)
 4. Forms cannot be submitted when required fields are empty + other Django-based checks
+
+## Custom testing
+
+Additional testing has been performed via TestCase Django classes. Tests run via tests_forms.py and test_views.py. One test failed only, to be corrected in future.
