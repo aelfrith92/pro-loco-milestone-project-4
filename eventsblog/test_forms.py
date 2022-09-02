@@ -24,7 +24,8 @@ class TestSuggestEventForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('featured_image', form.errors.keys())
 
-        self.assertEqual(form.errors['featured_image'][0], 'This field is required.')
+        self.assertEqual(form.errors['featured_image'][0],
+                         'This field is required.')
 
     def test_event_scheduled_on_is_required(self):
         form = SuggestEventForm({'scheduled_on': ''})
@@ -33,7 +34,10 @@ class TestSuggestEventForm(TestCase):
 
     def test_explicit_fields_in_metaclass(self):
         form = SuggestEventForm()
-        self.assertEqual(form.Meta.fields, ('title', 'featured_image', 'text_preview', 'content', 'scheduled_on'))
+        self.assertEqual(form.Meta.fields, ('title', 'featured_image',
+                                            'text_preview', 'content',
+                                            'scheduled_on'))
+
 
 class TestCommentEventForm(TestCase):
     '''Testing required fields of the above'''

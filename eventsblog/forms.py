@@ -33,6 +33,6 @@ class SuggestEventForm(forms.ModelForm):
     # The form should allow to enter dates that are not too far. Validation
     # example available in the UpdateEvent view
     current_year = int((timezone.now()).strftime("%Y"))
-    BIRTH_YEAR_CHOICES = [current_year, current_year+1]
+    VALID_CHOICES = [current_year, current_year+1]
     scheduled_on = forms.DateField(widget=forms
-                                   .SelectDateWidget(years=BIRTH_YEAR_CHOICES))
+                                   .SelectDateWidget(years=VALID_CHOICES))

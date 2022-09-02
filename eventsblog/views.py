@@ -1,16 +1,18 @@
+from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, View
+from django.views.generic import (CreateView, ListView, UpdateView, DeleteView,
+                                  View)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect, HttpResponseServerError
-from .models import Event
 from django.utils import timezone
-from datetime import timedelta
 from django.contrib import messages
 from django.utils.text import slugify
+from .models import Event
 from .forms import CommentEventForm, SuggestEventForm
 
 
 class EventList(ListView):
+    '''List of events retrieval and pagination view'''
     model = Event
     queryset = Event.objects.filter(status=1).order_by("scheduled_on")
     template_name = "index.html"
@@ -18,8 +20,10 @@ class EventList(ListView):
 
 
 class EventOverview(View):
+    '''Overview of a single event'''
 
     def get(self, request, slug, *args, **kwargs):
+        '''Retrieving related comments and checks on joined status'''
         queryset = Event.objects.filter(status=1)
         event = get_object_or_404(queryset, slug=slug)
         comments = event.comments.filter(approved=True).order_by('-created_on')
@@ -41,6 +45,7 @@ class EventOverview(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+        '''POST request handling + CommentEventForm validation view'''
         queryset = Event.objects.filter(status=1)
         event = get_object_or_404(queryset, slug=slug)
         comments = event.comments.filter(approved=True).order_by("-created_on")
@@ -75,8 +80,11 @@ class EventOverview(View):
 
 
 class EventJoin(View):
-
+    '''Joins field view'''
     def post(self, request, slug):
+        '''POST request handling- If the user is listed, removes it
+        otherwise adds it everytime the related button is hit during
+        an authenticated session'''
         event = get_object_or_404(Event, slug=slug)
         if event.joins.filter(id=request.user.id).exists():
             event.joins.remove(request.user)
@@ -87,13 +95,15 @@ class EventJoin(View):
 
 
 class Suggestion(LoginRequiredMixin, CreateView):
-
+    '''Event creation view'''
     model = Event
     form_class = SuggestEventForm
     template_name = "suggestion.html"
     success_url = "/"
 
     def form_valid(self, form):
+        '''Form validation. Enhanced validation included in the
+        UpdateEvent view for demo purposes included in the readme.md file'''
         form.instance.name = self.request.user.username
         form.instance.email = self.request.user.email
         form.instance.author_id = self.request.user.id
@@ -102,19 +112,22 @@ class Suggestion(LoginRequiredMixin, CreateView):
         # Checking whether the chosen date is already taken
         scheduled_events = Event.objects.values_list('scheduled_on')
         for day in scheduled_events.values('scheduled_on'):
-            if day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x"):
+            if (day['scheduled_on'].strftime("%x") ==
+                    suggested_date.strftime("%x")):
                 messages.warning(
                     self.request, 'The chosen date is taken by'
                     ' another event. Have a look at the homepage for the'
                     ' available dates.'
                 )
                 return HttpResponseRedirect(reverse('suggestion', ))
+            # Checking whether the user is actually allowing 14 days at least
             elif suggested_date < (timezone.now() + timedelta(days=14)):
                 messages.warning(
                     self.request, 'Please, allow at least 14 days'
                     ' to the proposed date.'
                 )
                 return HttpResponseRedirect(reverse('suggestion', ))
+        # No errors encountered
         messages.success(
             self.request, 'Event successfully submitted for '
             'review'
@@ -124,7 +137,7 @@ class Suggestion(LoginRequiredMixin, CreateView):
 
 class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
-    A view to editing an event form for the event owner
+    A view to edit an event form
     """
     model = Event
     form_class = SuggestEventForm
@@ -138,36 +151,48 @@ class UpdateEvent(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         list_of_slugs = Event.objects.values_list('slug')
         passed_event_slug = form.instance.slug
         for day in scheduled_events.values('scheduled_on'):
-            print(day)
             for other_slug in list_of_slugs.values('slug'):
-                print(other_slug['slug'], passed_event_slug)
                 # The following check makes sure that the view accepts a
                 # valid year, namely, either the current or the following one
-                if int(suggested_date.strftime("%Y")) > (int((timezone.now()).strftime("%Y"))+1):
-                    print(int(day['scheduled_on'].strftime("%Y")), (int((timezone.now()).strftime("%Y"))+1))
-                    # The following error class was inserted for demo purposes
+                if (int(suggested_date.strftime("%Y")) >
+                        (int((timezone.now()).strftime("%Y"))+1)):
+                    # The following error class was inserted for demo
+                    # and testing purposes
                     return HttpResponseServerError(
                         render(
                             self.request,
                             "500.html",
                         )
                     )
-                elif (day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug == other_slug['slug']):
+                # The following check makes sure that the error
+                # "date already taken by another event" is not
+                # thrown for the same slug being checked, as the event
+                # being edited has got priority on its own date previously
+                # assigned
+                elif (day['scheduled_on'].strftime("%x") ==
+                        suggested_date.strftime("%x") and
+                        passed_event_slug == other_slug['slug']):
                     break
-                elif day['scheduled_on'].strftime("%x") == suggested_date.strftime("%x") and passed_event_slug != other_slug['slug']:
-                    print(passed_event_slug, other_slug['slug'])
+                # Throws the error rleating to overlapping dates
+                elif (day['scheduled_on'].strftime("%x") ==
+                        suggested_date.strftime("%x") and
+                        passed_event_slug != other_slug['slug']):
                     messages.warning(
                         self.request, 'The chosen date is taken by'
                         ' another event. Have a look at the homepage for the'
                         ' available dates.'
                     )
-                    return HttpResponseRedirect(reverse('update', args=[passed_event_slug]))
+                    return HttpResponseRedirect(
+                        reverse('update', args=[passed_event_slug]))
+            # Only if above conditions are met, this check kicks in and
+            # follows up with the validation
             if suggested_date < (timezone.now() + timedelta(days=5)):
                 messages.warning(
                     self.request, 'Please, allow at least 5 days'
                     ' to the staff to review the edited date.'
                 )
-                return HttpResponseRedirect(reverse('update', args=[passed_event_slug]))
+                return HttpResponseRedirect(
+                    reverse('update', args=[passed_event_slug]))
         messages.success(
             self.request, 'Event successfully edited'
         )

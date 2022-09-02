@@ -55,7 +55,7 @@ body {
   object-fit: cover;
 }
 
-#head-txt-cont {
+.head-txt-cont {
   background-color: rgba(255, 255, 255, 0.4);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
@@ -64,14 +64,14 @@ body {
   border-top-left-radius: 10%;
 }
 
-#head-txt-cont h1 {
-  font-size: 400%;
+.head-txt-cont h1 {
+  font-size: 300%;
 }
 
-#head-txt-cont p {
+.head-txt-cont p {
   font-family: 'Roboto', sans-serif;
   color:rgb(48, 37, 37);
-  font-size: 200%;
+  font-size: 150%;
 }
 
 .carousel-caption h1, .carousel-caption h1
@@ -282,11 +282,7 @@ body {
 }
 
 /* CODE INSTITUTE: CUSTOM OVERRIDING
--------------------------------------------------- 
-
-.card-img-top {
-  border-radius: 2%;
-}*/
+-------------------------------------------------- */
 
 footer {
    position: static;
@@ -298,6 +294,14 @@ footer {
    border-top: solid 0.1rem black;
    margin-top: 5rem;
    padding-top: 2rem;
+}
+
+.card-text {
+  color: #0F5735;
+}
+
+.text-contrast {
+  color: #51595D;
 }
 
 /* Event cards
@@ -374,7 +378,7 @@ z-index: 2;
   font-size: 13px;
   letter-spacing: 2px;
   font-weight: 400;
-  color: #868686;
+  color: #575757;
 }
 
 .card__title {
@@ -393,7 +397,7 @@ z-index: 2;
 .card__author {
   font-weight: 400;
   text-decoration: none;
-  color: #AD7D52;
+  color: #6C5233;
   text-transform: uppercase;
 }
 
@@ -456,6 +460,10 @@ z-index: 2;
 
 /* SOCIAL LINKS IN THE FOOTER
 -------------------------------------------------- */
+footer a {
+  color: #024CBB;
+}
+
 .social-networks li {
 	display: inline;
 	list-style-type: none;

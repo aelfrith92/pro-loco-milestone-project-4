@@ -1,8 +1,8 @@
+from datetime import timedelta
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils import timezone
-from datetime import timedelta
 
 STATUS = ((0, "Draft"), (1, "Scheduled"), (2, "Cancelled"))
 AUDIENCE = ((0, "Admin"), (1, "Everyone"))
@@ -37,9 +37,11 @@ class Event(models.Model):
         ordering = ["scheduled_on"]
 
     def __str__(self):
+        '''Returns the title field of the created instance'''
         return self.title
 
     def number_of_joins(self):
+        '''Returns the number of entries/values within the field joins'''
         return self.joins.count()
 
 
@@ -55,7 +57,9 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
 
     class Meta:
+        '''Meta class defining the order of retrieved comments'''
         ordering = ["created_on"]
 
     def __str__(self):
+        '''Returns a string which facilitates a concise approach'''
         return f"Comment {self.body} by {self.name}"

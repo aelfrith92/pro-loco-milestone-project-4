@@ -18,7 +18,7 @@
                 {% if "placeholder" in event.featured_image.url %}
                     <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
                 {% else %}
-                    <img src="{{ event.featured_image.url }}" width="100%">
+                    <img src="{{ event.featured_image.url }}" width="100%" alt="featured image">
                 {% endif %}
             </div>
         </div>
@@ -35,34 +35,31 @@
                 <div class="row">
 
                     <div class="col-1">
-                        <!-- The number of joins goes before the closing strong tag -->
-                        <strong>
-                            {% comment %} 
-                                The following condition will let the user submit their join
-                                preference, depending on the authentication status
-                            {% endcomment %}
-                            {% if user.is_authenticated %}
-                                <form class="d-inline" action="{% url 'event_join' event.slug %}" method="POST">
-                                    {% csrf_token %}
-                                    {% if joined %}
-                                        <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
-                                            <i class="fa-solid fa-user-check"></i>
-                                        </button>
-                                    {% else %}
-                                        <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
-                                            <i class="fa-solid fa-user-plus"></i>
-                                        </button>
-                                    {% endif %}
-                                </form>
-                            {% else %}
-                                <span class="text-secondary"><i class="fa-solid fa-user-plus"></i></span>
-                            {% endif %}
-                            <span class="text-secondary"> {{ event.number_of_joins }} </span>
-                        </strong>
+                        {% comment %} 
+                            The following condition will let the user submit their join
+                            preference, depending on the authentication status
+                        {% endcomment %}
+                        {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'event_join' event.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if joined %}
+                                    <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
+                                        <strong><i class="fa-solid fa-user-check"></i></strong>
+                                    </button>
+                                {% else %}
+                                    <button type="submit" name="blogevent_id" value="{{event.slug}}" class="btn-like">
+                                        <strong><i class="fa-solid fa-user-plus"></i></strong>
+                                    </button>
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <span class="text-contrast"><i class="fa-solid fa-user-plus"></i></span>
+                        {% endif %}
+                        <strong><span class="text-contrast"> {{ event.number_of_joins }} </span></strong>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="fa-solid fa-message"></i>
+                        <strong class="text-contrast"><i class="fa-solid fa-message"></i>
                             <!-- The total_comments variable goes before the closing strong tag -->
                             {{ total_comments }}
                         </strong>
@@ -84,13 +81,12 @@
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
-                <!-- We want a for loop inside the tags to iterate through each comment in comments -->
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                        <!-- The commenter's name goes here. -->
                         {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
+                        <span class=" text-contrast font-weight-normal">
                             <!-- The comment's created date goes here -->
                             {{ comment.created_on }}
                         </span> wrote:
@@ -104,6 +100,7 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
+
                 {% comment %} 
                     The following condition checks whether user's comment 
                     is still awaiting approval. It is defined via views.py 
@@ -115,18 +112,20 @@
 	                    Your comment is awaiting approval
 	                </div>
                 {% else %}
-                {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
 
-	                <h3>Leave a comment:</h3>
-	                <p>Posting as: {% if user.is_authenticated %}<h4><span class="badge{% if user.is_staff %} bg-primary {%else%} bg-success{% endif %}">{{ user.username }}</span></h4>
-                {% endif %}
-                        </span></p>
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as:
+                            <h4>
+                                <span class="badge{% if user.is_staff %} bg-primary {% else %} bg-success{% endif %}">{{ user.username }}</span>
+                            </h4>
+                        </p>
 	                <form method="post" style="margin-top: 1.3em;">
 	                    {{ comment_form | crispy }}
 	                    {% csrf_token %}
-	                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+	                    <button type="submit" class="btn btn-contrast border-3 border-dark btn-lg">Submit</button>
 	                </form>
-                {% endif %}
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

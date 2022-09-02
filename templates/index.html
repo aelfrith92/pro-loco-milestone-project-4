@@ -11,26 +11,26 @@
     <div class="carousel-inner postion-relative">
       <div class="carousel-item active">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="rgba(43, 43, 21, 0.369)"/></svg>
-        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661556945/public/269320861_1077516589747672_2028501877365088802_n_oeitno.jpg" />
-        <div class="position-absolute top-50 start-50 translate-middle" id="head-txt-cont">
+        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661556945/public/269320861_1077516589747672_2028501877365088802_n_oeitno.jpg" alt="Pro-Loco volunteers" />
+        <div class="position-absolute top-50 start-50 translate-middle head-txt-cont">
           <h1>Welcome to Pro-Loco Supersano</h1>
-          <p>Find all the events organized by our association and suggest your ideas!<p>
+          <p>Find all the events organized by our association and suggest your ideas!</p>
         </div>
       </div>
       <div class="carousel-item">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661551978/public/euahrvhllermai8ki2f5.jpg" />
-        <div class="position-absolute top-50 start-50 translate-middle" id="head-txt-cont">
+        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661551978/public/euahrvhllermai8ki2f5.jpg" alt="typical countryside" />
+        <div class="position-absolute top-50 start-50 translate-middle head-txt-cont">
           <h1><a class="nav-link" href="{% url 'account_signup' %}">Sign up today</a></h1>
-          <p>Find the event of your interest and join us!<p>
+          <p>Find the event of your interest and join us!</p>
         </div>
       </div>
       <div class="carousel-item">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661556945/public/291463627_1203344150498248_2974076757826356827_n_afsrq6.jpg" />
-        <div class="position-absolute top-50 start-50 translate-middle" id="head-txt-cont">
+        <img class="carousel-supersano" src="https://res.cloudinary.com/aelfrith/image/upload/v1661556945/public/291463627_1203344150498248_2974076757826356827_n_afsrq6.jpg" alt="Movie behind the scenes" />
+        <div class="position-absolute top-50 start-50 translate-middle head-txt-cont">
           <h1>Our values</h1>
-          <p>Environment, Sustainability, Support each other<p>
+          <p>Environment, Sustainability, Support each other</p>
         </div>
       </div>
     </div>
@@ -48,126 +48,127 @@
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <!-- List of Events paginated by 6 -->
-    {% for event in event_list %}
-    <div class="container marketing">
-      {% if forloop.counter|divisibleby:2 %}
+  <!-- List of Events paginated by 6 -->
+  {% for event in event_list %}
+  <div class="container marketing">
+    {% if forloop.counter|divisibleby:2 %}
 
-        <div class="row featurette border-top border-primary py-5">
-          <div class="col-md-7">
-            
-            <a href="{% url 'event_detail' event.slug %}" class="post-link">
-              <h2 class="featurette-heading">
-                {{ event.title }}
-              </h2>
-              <p class="lead">
-                {{ event.txt_preview }}
-              </p>
-            </a>
-            
-            <p class="card-text text-muted h6">
-              Scheduled on: {{ event.scheduled_on }} 
-              <p><i class="fa-solid fa-user-plus"></i> {{ event.number_of_joins }}</p>
-            </p>
-            {% if user.is_authenticated and user.is_staff %}
-              <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
-            {% endif %}
-          </div>
-          <div class="col-md-5">
-            {% if "placeholder" in event.featured_image.url %}
-              <img class="card-img-top"
-                  src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-              {% else %}
-              <section class="cardss">
-                <article class="cardd card--1">
-                  <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
-                  <a href="{% url 'event_detail' event.slug %}" class="card_link">
-                    <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
-                  </a>
-                  <div class="card__info">
-                    <span class="card__category">{{ event.text_preview }}</span>
-                    <h5 class="card__title">{{ event.content }}</h5>
-                    <span class="card__by">by <a href="#" class="card__author" title="author">{{ event.author }}</a></span>
-                  </div>
-                </article>
-              </section>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-
-      {% else %}
-
-        <div class="row featurette border-top border-primary py-5">
-          <div class="col-md-7 order-md-2">
-            <a href="{% url 'event_detail' event.slug %}" class="post-link">
-              <h2 class="featurette-heading">
-                {{ event.title }}
-              </h2>
-              <p class="lead">
-                {{ event.txt_preview }}
-              </p>
-            </a>
+      <div class="row featurette border-top border-primary py-5">
+        <div class="col-md-7">
+          
+          <a href="{% url 'event_detail' event.slug %}" class="post-link">
+            <h2 class="featurette-heading">
+              {{ event.title }}
+            </h2>
             <p class="lead">
               {{ event.txt_preview }}
             </p>
-            <p class="card-text text-muted h6">
-              Scheduled on: {{ event.scheduled_on }} 
-              <p><i class="fa-solid fa-user-plus"></i> {{ event.number_of_joins }}</p>
-            </p>
-            {% if user.is_authenticated and user.is_staff %}
-              <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
-              <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
+          </a>
+          
+          <div class="card-text h6">
+            Scheduled on: {{ event.scheduled_on }} 
+            <p><i class="fa-solid fa-user-plus"></i> {{ event.number_of_joins }}</p>
+          </div>
+          {% if user.is_authenticated and user.is_staff %}
+            <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
+            <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
+          {% endif %}
+        </div>
+        <div class="col-md-5">
+          <div>
+          {% if "placeholder" in event.featured_image.url %}
+            <img class="card-img-top"
+                src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+            {% else %}
+            <section class="cardss">
+              <article class="cardd card--1">
+                <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                <a href="{% url 'event_detail' event.slug %}" class="card_link">
+                  <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                </a>
+                <div class="card__info">
+                  <span class="card__category">{{ event.text_preview }}</span>
+                  <h5 class="card__title">{{ event.content }}</h5>
+                  <span class="card__by">by <a href="#" class="card__author" title="author">{{ event.author }}</a></span>
+                </div>
+              </article>
+            </section>
             {% endif %}
           </div>
-          <div class="col-md-5 order-md-1">
-            <div class="image-container">
-              {% if "placeholder" in event.featured_image.url %}
-              <img class="card-img-top"
-                  src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-              {% else %}
-              <section class="cardss">
-                <article class="cardd card--1">
-                  <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
-                  <a href="{% url 'event_detail' event.slug %}" class="card_link">
-                    <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
-                  </a>
-                  <div class="card__info">
-                    <span class="card__category">{{ event.text_preview }}</span>
-                    <h5 class="card__title">{{ event.content }}</h5>
-                    <span class="card__by">by <a href="#" class="card__author" title="author">{{ event.author }}</a></span>
-                  </div>
-                </article>
-              </section>
-              {% endif %}
-            </div>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="row featurette border-top border-primary py-5">
+        <div class="col-md-7 order-md-2">
+          <a href="{% url 'event_detail' event.slug %}" class="post-link">
+            <h2 class="featurette-heading">
+              {{ event.title }}
+            </h2>
+            <p class="lead">
+              {{ event.txt_preview }}
+            </p>
+          </a>
+          <p class="lead">
+            {{ event.txt_preview }}
+          </p>
+          <div class="card-text h6">
+            Scheduled on: {{ event.scheduled_on }} 
+            <p><i class="fa-solid fa-user-plus"></i> {{ event.number_of_joins }}</p>
+          </div>
+          {% if user.is_authenticated and user.is_staff %}
+            <a class="btn btn-outline-info mb-2" href="{% url 'update' event.slug %}">Update</a>
+            <a class="btn btn-outline-danger mb-2" href="{% url 'delete' event.slug %}">Delete</a>
+          {% endif %}
+        </div>
+        <div class="col-md-5 order-md-1">
+          <div class="image-container">
+            {% if "placeholder" in event.featured_image.url %}
+            <img class="card-img-top"
+                src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+            {% else %}
+            <section class="cardss">
+              <article class="cardd card--1">
+                <div class="card__img" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                <a href="{% url 'event_detail' event.slug %}" class="card_link">
+                  <div class="card__img--hover py-2" style="background-image: url('{{ event.featured_image.url }}');"></div>
+                </a>
+                <div class="card__info">
+                  <span class="card__category">{{ event.text_preview }}</span>
+                  <h5 class="card__title">{{ event.content }}</h5>
+                  <span class="card__by">by <a href="#" class="card__author" title="author">{{ event.author }}</a></span>
+                </div>
+              </article>
+            </section>
+            {% endif %}
           </div>
         </div>
-      
-      {% endif %}
-      {% if loop.last %}
-      <hr class="featurette-divider">
-      {% endif %}
-    </div><!-- /.container -->
-    {% endfor %}
-    {% if is_paginated %}
-      <nav aria-label="Page navigation">
-          <ul class="pagination justify-content-center">
-              {% if page_obj.has_previous %}
-                <li>
-                  <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
-                </li>
-              {% endif %}
-              {% if page_obj.has_next %}
-                <li>
-                  <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
-                </li>
-              {% endif %}
-          </ul>
-      </nav>
+      </div>
+    
     {% endif %}
+    {% if loop.last %}
+    <hr class="featurette-divider">
+    {% endif %}
+  </div> <!-- /.container -->
+  {% endfor %}
+  {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+              <li>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+              </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+              <li>
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+              </li>
+            {% endif %}
+        </ul>
+    </nav>
+  {% endif %}
 
-    <!-- END OF EVENT LIST -->
+  <!-- END OF EVENT LIST -->
 
 {% endblock %}
