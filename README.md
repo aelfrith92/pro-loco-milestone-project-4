@@ -662,3 +662,76 @@ Tests were performed on the create booking to ensure that:
 ## Custom testing
 
 Additional testing has been performed via TestCase Django classes. Tests run via tests_forms.py and test_views.py. One test failed only, to be corrected in future.
+
+## Deployment
+
+### Version Control
+
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘pro-loco-milestone-project-4’.
+
+The following git commands were used throughout development to push code to the remote repo:
+
+```git add .``` - This command was used to add all files to the staging area before they are committed.
+
+```git commit -m “commit message”``` - This command was used to commit changes to the local repository queue ready for the final step.
+
+```git push``` - This command was used to push all committed code to the remote repository on github.
+
+### Heroku Deployment
+
+The site was deployed to Heroku. The steps to deploy are as follows:
+
+- Navigate to heroku and create an account
+- Click the new button in the top right corner
+- Select create new app
+- Enter app name
+- Select region and click create app
+- **[Before Nov 28th via Heroku]** Click the resources tab and search for Heroku Postgres. **[After Nov 28th via ElephantSQL]** Create an account on [ElephantSQL](https://www.elephantsql.com/) 
+- **[Before Nov 28th via Heroku]** Select hobby dev and continue. **[After Nov 28th via ElephantSQL]** Create a new instance on ElephantSQL, by using the "Tiny Turtle" plan; enter a name that would resemble the project name; select a region; review the selected information; create the instance.
+- Go to the settings tab and then click reveal config vars
+- Add the following config vars:
+  - SECRET_KEY: (Your secret key)
+  - **[Before Nov 28th via Heroku]** DATABASE_URL: (This should already exist with add on of postgres). **[After Nov 28th via ElephantSQL]** Copy the URL of your instance on ElephantSQL and paste it as config var named DATABASE_URL. The URL should start with ```postgres://```
+  - CLOUNDINARY_URL: (cloudinary api url)
+- Click the deploy tab
+- Scroll down to Connect to GitHub and sign in / authorize when prompted
+- In the search box, find the repositoy you want to deploy and click connect
+- Scroll down to Manual deploy and choose the main branch
+- Click deploy
+
+The app should now be deployed.
+
+The live link can be found here: [Live Site](https://proloco-supersano.herokuapp.com/)
+
+### Run Locally
+
+Navigate to the GitHub Repository you want to clone to use locally:
+
+- Click on the code drop down button
+- Click on HTTPS
+- Copy the repository link to the clipboard
+- Open your IDE of choice (git must be installed for the next steps)
+- Type "git clone [copied-git-url](https://github.com/aelfrith92/pro-loco-milestone-project-4)" into the IDE terminal
+
+The project will now have been cloned on your local machine for use.
+
+### Fork Project
+
+Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
+
+- Navigate to the GitHub Repository you want to fork.
+
+- On the top right of the page under the header, click the fork button.
+
+- This will create a duplicate of the full project in your GitHub Repository.
+
+### Dependencies
+
+In the last 2 cases, remember to install the dependencies by running the following command in the terminal:
+
+```$ pip install -r requirements.txt```
+
+
+## Credits 
+
+Thanks to my mentor Daisy Mc Girr, who guided me through this project.

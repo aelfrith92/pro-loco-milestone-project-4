@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+
 class TestViews(TestCase):
     '''Test views via http response'''
     def test_get_event_list(self):
