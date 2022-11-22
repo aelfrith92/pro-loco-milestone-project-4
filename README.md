@@ -31,8 +31,6 @@ Pro-Loco Supersano is an NGO based in Supersano - Italy, that gathers resourcefu
     * [Run Locally](#Run-Locally)
     * [Fork Project](#Fork-Project)
 * [Credits](#Credits)
-  * [Content](#Content)
-  * [Acknowledgements](#Acknowledgements)
 
 # User-Experience-Design
 
